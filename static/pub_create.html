@@ -30,6 +30,9 @@
                 <a class="nav-link" href="/pub_create.html">Hely hozzáadás</a>
             </li>
             <li class="nav-item list-inline-item">
+                <a class="nav-link" href="/pub_search.html">Keresés</a>
+            </li>
+            <li class="nav-item list-inline-item">
                 <a class="nav-link" href="/profil.html">Profil</a>
             </li>
             <li class="nav-item list-inline-item">
@@ -52,26 +55,71 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                           <div class="form-group row">
-                                <label for="location" class="col-sm-2 col-form-label">Cím*:</label>
+                            <div class="form-group row">
+                                <label for="adress" class="col-sm-2 col-form-label">Cím*:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="location">
+                                    <input type="text" class="form-control" id="adress">
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <hr>
+                    <h3>Kapcsolat</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="tel" class="col-sm-2 col-form-label">Telefonszám:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="tel" placeholder="+36 30 123 4568">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="mail" class="col-sm-2 col-form-label">Email-cím:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="mail" placeholder="ex@gmail.com">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="web" class="col-sm-2 col-form-label">Weboldal:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="web" placeholder="wwww.bestpub.com">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
                 </div>
                 <div class="col-md-6" style="text-align: center">
                     <img id="pubImgSrc" src="http://via.placeholder.com/500x300" class="responsive" style="margin-top: 30px">
-                    <a href="#" onclick="upload();"> <label> Borítókép feltöltése</label></a>
+                    <a href="#" onclick="upload();">
+                        <label> Borítókép feltöltése</label>
+                    </a>
                     <input type="file" id="pubImg" hidden>
                 </div>
             </div>
+            <h3>Képek</h3>
             <div class="row">
-
+                <div style="text-align: center; display: inline">
+                    <img src="/images/bar.png" width="80">
+                    <img src="/images/bar2.png" width="80">
+                    <img src="/images/bar.png" width="80">
+                    <img src="/images/bar2.png" width="80">
+                    <a href="#">
+                        <img src="/images/plus.png" width="80">
+                        </a-href>
+                </div>
+               
             </div>
+            <div style="float:right; display: block">
+                    <input type="button" class=" btn btn-success" value="Hozzáadás" style="padding-right: 10px">
+                    <a href="/profil.html"><input type="button" class=" btn btn-danger" value="Mégse"></a>
+                </div>
+        </form>
     </div>
-    </form>
     <script>
         function upload() {
             var fileinput = document.getElementById('pubImg');
