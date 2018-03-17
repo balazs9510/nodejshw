@@ -1,17 +1,15 @@
 {
-  "name": "expresstuto",
+  "name": "nodehw",
   "version": "1.0.0",
-  "description": "tutorial",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "author": "EN",
-  "license": "Beerware",
   "dependencies": {
     "colors": "^1.1.2",
     "ejs": "^2.5.7",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "express-session": "^1.15.6"
   }
 }

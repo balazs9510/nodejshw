@@ -1,0 +1,16 @@
+GET + POST /pub/add
+GET /pub/del/:id
+GET /pub/mod/:id
+GET /pub
+
+
+GET /rating/user
+GET /rating/pub
+POST /rating/del/:id
+GET + POST /rating/user/add
+
+GET + POST /profil
+POST /login
+GET + POST /register
+POST /logout
+GET / - fooldal
