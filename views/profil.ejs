@@ -1,0 +1,41 @@
+<%- include('header'); %>
+<div class="container">
+        <div class="row">
+            <div class="col-md-4" style="text-align: center" >
+                <% if(!user.profilImg){%>
+                <img id="profilImgSrc" src="http://via.placeholder.com/300x300" class="responsive" style="margin: 30px">
+                <%}%>
+                <a href="#" >
+                    <label> Borítókép feltöltése</label>
+                </a>
+                <input type="file" id="profilImg" hidden>
+                
+            </div>
+            <div class="col-md-8">
+                <div style=" margin: 50px;">
+                    <div class="form-group">
+                        <label for="name">Név: </label>
+                        <label class="form-control" id="name"><%= user.name%></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail cím: </label>
+                        <label class="form-control" id="email"> <%= user.email%></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefonszám: </label>
+                        <label class="form-control" id="phone"><%= user.phone%></label>
+                    </div>
+                    <a href="#" style="float: right"> Adataim szerkesztése</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <% if(user.role === "normal"){%>
+            <h3>Értékeléseim</h3>
+            <%- include('user_ratings'); %>
+        <%}else{%>
+            <h3>Feltöltött helyeim</h3>
+            <%- include('user_pubs'); %>
+        <%}%>
+    </div>
+    <%- include('footer'); %>

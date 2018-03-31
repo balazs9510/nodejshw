@@ -9,13 +9,47 @@ var deletePubMW = require('../middlewares/pub/deletePub');
 var loadAllPubMW = require('../middlewares/pub/loadAllPub');
 
 module.exports = function (app) {
-    var objectRepository = {};
+    var objectRepository = {
+        pubs: [
+            {
+                id: 1,
+                name: "Csuda kocsma",
+                adress: "Pest",
+                web: "kocsma.hu"
+
+            },
+            {
+                id: 2,
+                name: "HaleLuja",
+                adress: "Pécs",
+                web: "kocsma.hu"
+            },
+            {
+                id: 3,
+                name: "Csuda kocsma",
+                adress: "Pest",
+                web: "kocsma.hu"
+            },
+            {
+                id: 4,
+                name: "Csuda kocsma",
+                adress: "Pest",
+                web: "kocsma.hu"
+            },
+            {
+                id: 5,
+                name: "REst kocsma",
+                adress: "Pest x utca",
+                web: "rkocsma.hu"
+            },
+        ]
+    };
     /**
      * Render new pub view.
      */
     app.get('/pub/add',
         authMW(objectRepository),
-        renderMW(objectRepository, 'padd')
+        renderMW(objectRepository, 'pub_create')
     );
     /**
      * Create a new pub.
@@ -31,7 +65,7 @@ module.exports = function (app) {
     app.get('/pub/detail/:id',
         authMW(objectRepository),
         loadPubMW(objectRepository),
-        renderMW(objectRepository, 'pdetail')
+        renderMW(objectRepository, 'pub_detail')
     );
     /**
      * Delete a pub with id.
@@ -67,6 +101,6 @@ module.exports = function (app) {
     app.get('/pub',
         authMW(objectRepository),
         loadAllPubMW(objectRepository),
-        renderMW(objectRepository, 'getAll')
+        renderMW(objectRepository, 'pub_search')
     );
 }

@@ -1,0 +1,16 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Hely</th>
+            <th>Pont</th>
+            <th style="width: 140px"></th>
+        </tr>
+    </thead>
+    <% for (k in user.ratings){ var rating = user.ratings[k];  %>
+        <tr>
+            <td><%= rating.pub.name %></td>
+            <td><%= rating.value %></td>
+            <td><i class="material-icons">mode_edit</i><i class="material-icons">delete</i> </td>
+        </tr>
+    <% } %>
+</table>

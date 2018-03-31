@@ -1,56 +1,18 @@
-<!DOCTYPE html>
-<html class="no-js">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kocsma kereső</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/page.css">
-    <link rel="stylesheet" href="/css/custom.css">
-</head>
-
-<body>
-    <nav class="navbar navbar-light bg-light navbar-expand-lg justify-content-between">
-        <div class="logowrapper">
-            <img src="/images/crown.png" class="logo">
-            <a class="navbar-brand" style=" font-size: 25px;" href="/index.html">Kocsma kereső</a>
-        </div>
-        <ul class="navbar-nav list-inline">
-            <li class="nav-item  list-inline-item">
-                <a class="nav-link" href="/pub_create.html">Hely hozzáadás</a>
-            </li>
-            <li class="nav-item active list-inline-item">
-                <a class="nav-link" href="/pub_search.html">Keresés</a>
-            </li>
-            <li class="nav-item list-inline-item">
-                <a class="nav-link" href="/profil.html">Profil</a>
-            </li>
-            <li class="nav-item list-inline-item">
-                <a class="nav-link" href="/logout">Kijelentkezés</a>
-            </li>
-        </ul>
-    </nav>
+<%- include('header'); %>
     <div class="container">
         <div class="row" style="margin-top: 20px;">
             <div class="col-md-6 col-md-border">
-                <h1 style="padding-bottom: 5px;" id="titleHeader">Csudajó kocsma</h1>
+                <h1 style="padding-bottom: 5px;" id="titleHeader">
+                    <%= pub.name %>
+                </h1>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group row" style="margin-bottom: -15px;">
                             <label for="adress" class="col-sm-3 col-form-label">Cím: </label>
                             <div class="col-sm-9">
-                                <label class="form-control" id="adress"> 1111, Valami, XDS utca 12.</label>
+                                <label class="form-control" id="adress"> 
+                                        <%= pub.adress %>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -62,7 +24,13 @@
                         <div class="form-group row">
                             <label for="tel" class="col-sm-3 col-form-label">Telefonszám:</label>
                             <div class="col-sm-9">
-                                <label class="form-control" id="tel">+36 30 123 4568</label>
+                                <label class="form-control" id="tel">
+                                        <% if(pub.phone){ %>
+                                            <%= pub.phone %>
+                                        <% }else{ %>
+                                            -
+                                        <% }%>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -70,7 +38,13 @@
                         <div class="form-group row">
                             <label for="mail" class="col-sm-3 col-form-label">Email-cím:</label>
                             <div class="col-sm-9">
-                                <label class="form-control" id="mail">ex@gmail.com</label>
+                                <label class="form-control" id="mail">
+                                        <% if(pub.mail){ %>
+                                            <%= pub.mail %>
+                                        <% }else{ %>
+                                            -
+                                        <% }%>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -78,7 +52,13 @@
                         <div class="form-group row">
                             <label for="web" class="col-sm-3 col-form-label">Weboldal:</label>
                             <div class="col-sm-9">
-                                <label class="form-control" id="web">wwww.bestpub.com</label>
+                                <label class="form-control" id="web">
+                                        <% if(pub.web){ %>
+                                            <%= pub.web %>
+                                        <% }else{ %>
+                                            -
+                                        <% }%>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -99,7 +79,7 @@
 
                     </div>
                 </div>
-                <a href="/pub_search.html"> &lt;&lt; Vissza a kereséshez</a>
+                <a href="/pub"> &lt;&lt; Vissza a kereséshez</a>
             </div>
             <div class="col-md-6 col-md-border">
                 <h1>Értékelések</h1>
@@ -121,6 +101,4 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>
+    <%- include('footer'); %>

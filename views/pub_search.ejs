@@ -1,0 +1,55 @@
+<%- include('header'); %>
+<div class="container">
+        <h1>Keresés</h1>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Név:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                <div class="form-group row">
+                    <label for="adress" class="col-sm-2 col-form-label">Cím:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="adress">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                <div class="form-group row">
+                    <label for="sort" class="col-sm-4 col-form-label">Rendezés:</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" id="sort">
+                            <option>Értékelés</option>
+                            <option>Hely</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3">
+                <input type="button" class="btn" value="Keresés" style="float:right">
+            </div>
+        </div>
+        <hr>
+        <div style="overflow-y: auto; overflow-x: hidden">
+            <div class="row">
+                <% for( k in pubs){ var pub = pubs[k]; %> 
+                <div class="col-md-3" style="text-align: center">
+                    <% var hrefString = "/pub/detail/"+ pub.id; console.log(hrefString); %>
+                    <a href="<%= hrefString %>">
+                        <% if(pub.coverImage){ %>
+                            <img src="" class="responsive">
+                        <% }else{ %>
+                            <img src="http://via.placeholder.com/200x200" class="responsive">
+                        <% }%>
+                        <label> <%= pub.name %> </label>
+                    </a>
+                </div>
+                <% }%>
+            </div>   
+        </div>
+    </div>
+<%- include('footer'); %>

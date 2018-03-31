@@ -1,33 +1,4 @@
-<!DOCTYPE html>
-<html class="no-js">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kocsma kereső</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <script src="/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="/css/header.css">
-</head>
-
-<body>
-    <nav class="navbar navbar-light bg-light justify-content-between">
-        <div class="logowrapper">
-            <img src="/images/crown.png" class="logo">
-            <a class="navbar-brand" style=" font-size: 25px;" href="/index.html">Kocsma kereső</a>
-        </div>
-
-        <form class="form-inline">
-            <label for="email" style="padding-right: 5px;">E-mail cím: </label>
-            <input class="form-control mr-sm-2" type="email" id="email" placeholder="ex@email.com">
-            <label for="pw" style="padding-right: 5px;">Jelszó: </label>
-            <input class="form-control mr-sm-2" type="password" id="pw" placeholder="password">
-            <a href="/login"><input class="btn btn-success my-2 my-sm-0" style="margin-right: 5px;" value="Belépés"></a>
-            <a href="/register"> <input class="btn btn-success my-2 my-sm-0" style="margin-right: 5px;" value="Regisztráció"></a>
-        </form>
-    </nav>
+<%- include('header'); %>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -56,8 +27,8 @@
                 <img src="/images/larrow.png" width="120">
                 <div style="text-align: center; display: inline">
                     <img src="/images/bar.png" width="60">
-                    <img src="/images/bar2.png"  width="60">
-                    <img src="/images/bar.png"  width="60">
+                    <img src="/images/bar2.png" width="60">
+                    <img src="/images/bar.png" width="60">
                     <img src="/images/bar2.png" width="60">
                 </div>
 
@@ -75,6 +46,4 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>
+    <%- include('footer'); %>

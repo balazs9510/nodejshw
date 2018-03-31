@@ -2,13 +2,14 @@ var loginMW = require('../middlewares/generic/login');
 var logoutMW = require('../middlewares/generic/logout');
 var mainredirectMW = require('../middlewares/generic/mainredirect');
 var renderMW = require('../middlewares/generic/render');
+var userMW = require('../middlewares/generic/user');
 
 module.exports = function (app) {
     var objectRepository = {};
     /**
      * Login
      */
-    app.get('/login',
+    app.post('/login',
         loginMW(objectRepository),
         mainredirectMW(objectRepository)
     );
@@ -23,6 +24,20 @@ module.exports = function (app) {
      * Register
      */
     app.get('/register',
-        renderMW(objectRepository,'register')
+        renderMW(objectRepository, 'register')
+    );
+    /**
+    * Register
+    */
+    app.post('/register',
+        loginMW(objectRepository),
+        mainredirectMW(objectRepository)
+    );
+    /**
+    * Profil
+    */
+    app.get('/profil',
+        userMW(objectRepository),
+        renderMW(objectRepository, 'profil')
     );
 }

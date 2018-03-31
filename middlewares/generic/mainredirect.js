@@ -6,13 +6,15 @@
  */
 module.exports = function (objectrepository) {
 
-    return function (req, res, next) {
-  
-      if (typeof req.session.userid === 'undefined') {
-        return res.redirect('/');
-      } else {
-        return res.redirect('/profil.html');
-      }
-    };
-  
+  return function (req, res, next) {
+    console.log('Main redirect called');
+    if (typeof req.session.userid === 'undefined') {
+      console.log('Redirect /');
+      return res.redirect('/');
+    } else {
+      console.log('Profil /');
+      return res.redirect('/profil');
+    }
   };
+
+};

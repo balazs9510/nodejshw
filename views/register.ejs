@@ -1,0 +1,93 @@
+<%- include('header'); %>
+<div class="container">
+    <h1>Regisztráció</h1>
+    <form action="/register" method="POST" id="registerForm" onsubmit="return validateRegisterForm()">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="name" class="col-md-4 col-form-label">Név*:</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="name" name="user_name">
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="mail" class="col-md-4 col-form-label">E-mail cím*:</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="mail" name="user_mail">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="pw" class="col-md-4 col-form-label">Jelszó*:</label>
+                <div class="col-md-8">
+                    <input type="password" class="form-control" id="pw" name="user_pw">
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="repw" class="col-md-4 col-form-label">Jelszó újra*:</label>
+                <div class="col-md-8">
+                    <input type="password" class="form-control" id="repw" name="user_repw">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tel" class="col-md-2 col-form-label">Telefonszám:</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="tel" name="user_phone">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="repw" class="col-md-2 col-form-label">Felhasználás módja:</label>
+            <div class="col-md-6">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="optradio" checked="checked" name="user_normal">
+                        Böngésző felhasználó
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="optradio" name="user_uploader">
+                        Feltöltő felhasználó
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div style="display: inline">
+            <button type="submit" class="btn btn-success" style=" margin-right: 10px">
+                Regisztrálok
+            </button>
+            <a href="/">
+                <button type="button" class="btn btn-danger" >Mégse</button>
+            </a>
+        </div>
+    </form>
+</div>
+<script>
+    function validateRegisterForm(){
+        var rFrom = document.getElementById('registerForm');
+        if(rFrom["user_name"].value == "")
+        {
+            alert("A név mező nem lehet üres!");
+            return false;
+        }
+        if(rFrom["user_mail"].value == "")
+        {
+            alert("Az e-mail mező nem lehet üres!");
+            return false;
+        }
+        if(rFrom["user_pw"].value == "")
+        {
+            alert("A jelszó mező nem lehet üres!");
+            return false;
+        }
+        if(rFrom["user_repw"].value != rFrom["user_pw"].value)
+        {
+            alert("A megadott jelszavak nem egyeznek!");
+            return false;
+        }
+        return true;
+    }
+</script>
+<%- include('footer'); %>
