@@ -8,6 +8,7 @@ var loadPubMW = require('../middlewares/pub/loadPub');
 var deletePubMW = require('../middlewares/pub/deletePub');
 var loadAllPubMW = require('../middlewares/pub/loadAllPub');
 
+var userModel = require('../models/user');
 module.exports = function (app) {
     var objectRepository = {
         pubs: [
@@ -42,7 +43,8 @@ module.exports = function (app) {
                 adress: "Pest x utca",
                 web: "rkocsma.hu"
             },
-        ]
+        ],
+        userModel: userModel
     };
     /**
      * Render new pub view.

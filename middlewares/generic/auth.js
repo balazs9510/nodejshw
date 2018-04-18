@@ -1,11 +1,25 @@
 /**
  * If the user is not logged in, redirects to /
- *  - set the user role to req.tpl.userrole -> this can be used to separate users
  */
-module.exports = function (objectRepository) {
+var requireOption = require('../common').requireOption;
+
+module.exports = function (objectrepository) {
+  var UserModel = requireOption(objectrepository, 'userModel');
 
   return function (req, res, next) {
-    return next();
+    if (typeof req.session.userid === 'undefined') {
+      return next();
+    }
+    UserModel.findOne({ _id: req.session.userid }, function (err, result) {
+      if (err) {
+        return next(err);
+      }
+      console.log(req.session.userid)
+      console.log(result);
+      res.tpl.user = result;
+
+      return next();
+    });
   };
 
 };

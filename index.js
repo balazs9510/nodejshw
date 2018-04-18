@@ -3,8 +3,6 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 
 var app = express();
-var renderMW = require('./middlewares/generic/render');
-
 
 app.set('view engine', 'ejs');
 
@@ -39,9 +37,6 @@ require('./routes/pub')(app);
 require('./routes/rating')(app);
 require('./routes/outside')(app);
 
-app.use('/', function (req, res, next) {
-    next();
-}, renderMW({}, 'index'));
 
 /**
  * Standard error handler

@@ -7,10 +7,13 @@ var loadUserRatingsMW = require('../middlewares/rating/loadUserRatings');
 var loadPubRatingsMW = require('../middlewares/rating/loadPubRatings');
 var deleteRatingMW = require('../middlewares/rating/deleteRating');
 var saveRatingMW = require('../middlewares/rating/saveRating');
+var userModel = require('../models/user');
 
 
 module.exports = function (app) {
-    var objectRepository = {};
+    var objectRepository = {
+        userModel: userModel
+    };
     /**
      * Render a user's all ratings.
      */

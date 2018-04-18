@@ -45,18 +45,18 @@
                         <li class="nav-item active list-inline-item">
                             <a class="nav-link" href="/pub/add">Hely hozzáadás</a>
                         </li>
-                        <%  } %>
-                            <%  if(user.role === "normal"){ %>
-                                <li class="nav-item list-inline-item">
-                                    <a class="nav-link" href="/pub">Keresés</a>
-                                </li>
-                                <%  } %>
-                                    <li class="nav-item active list-inline-item">
-                                        <a class="nav-link" href="/profil">Profil</a>
-                                    </li>
-                                    <li class="nav-item list-inline-item">
-                                        <a class="nav-link" href="/logout">Kijelentkezés</a>
-                                    </li>
+                    <%  } %>
+                    <%  if(user.role === "normal"){ %>
+                        <li class="nav-item list-inline-item">
+                            <a class="nav-link" href="/pub">Keresés</a>
+                        </li>
+                    <%  } %>
+                    <li class="nav-item active list-inline-item">
+                        <a class="nav-link" href="/profil">Profil</a>
+                    </li>
+                    <li class="nav-item list-inline-item">
+                        <a class="nav-link" href="/logout">Kijelentkezés</a>
+                    </li>
                 </ul>
             </nav>
-            <% }%>
+<% }%>
