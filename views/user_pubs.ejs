@@ -2,14 +2,18 @@
         <thead>
             <tr>
                 <th>Hely</th>
-                <th>Pont</th>
+                <th>Cím</th>
                 <th style="width: 140px"></th>
             </tr>
         </thead>
-        <% for (k in user.pubs){ var pubs = user.pubs[k];  %>
+        <% for (var i = 0; i < user.pubs.length;i++){ var pub = user.pubs[i];  %>
             <tr>
                 <td><%= pub.name %></td>
-                <td><i class="material-icons">mode_edit</i><i class="material-icons">delete</i> </td>
+                <td><%= pub.adress %></td>
+                <td>
+                    <a href="/pub/mod/<%= pub._id %>"><i class="material-icons">mode_edit</i></a>
+                    <a href="/pub/del/<%= pub._id %>"><i class="material-icons">delete</i></a>
+                </td>
             </tr>
         <% } %>
 </table>

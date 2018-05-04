@@ -5,12 +5,22 @@ var requireOption = require('../common').requireOption;
  */
 module.exports = function (objectRepository) {
 
-    //var pubModel = requireOption(objectRepository, 'pubModel');
+    var pubModel = requireOption(objectRepository, 'pubModel');
 
     return function (req, res, next) {
-        var pub = objectRepository.pubs[req.params.id -1 ];
-        console.log(pub);
-        res.tpl.pub = pub; 
-        return next();
+        pubModel.findOne({
+           _id : req.params.id
+        }, function (err, result) {
+
+            if (err) {
+                console.log(err);
+                res.tpl.error.push('No pub with this id');
+                return next();
+            }
+            console.log(result);
+            res.tpl.pub = result; 
+            return next();
+        }).populate('_ratings');
+        
     };
 };

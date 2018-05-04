@@ -1,6 +1,8 @@
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+var fs = require('fs');
+var busboy = require('connect-busboy');
 
 var app = express();
 
@@ -21,6 +23,8 @@ app.use(session({
  */
 // for parsing application/json
 app.use(bodyParser.json());
+app.use(busboy()); 
+
 // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
     extended: true
@@ -29,7 +33,6 @@ app.use(bodyParser.urlencoded({
 app.use(function (req, res, next) {
     res.tpl = {};
     res.tpl.error = [];
-    console.log("tpl added");
     return next();
 });
 

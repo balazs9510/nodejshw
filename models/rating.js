@@ -10,7 +10,7 @@ var Rating = db.model('Rating', {
   },
   _pub: {
       type: Schema.Types.ObjectId,
-      ref: 'pub'
+      ref: 'Pub'
   }
 });
 

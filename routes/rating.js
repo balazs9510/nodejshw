@@ -8,29 +8,14 @@ var loadPubRatingsMW = require('../middlewares/rating/loadPubRatings');
 var deleteRatingMW = require('../middlewares/rating/deleteRating');
 var saveRatingMW = require('../middlewares/rating/saveRating');
 var userModel = require('../models/user');
-
-
+var ratingModel = require('../models/rating');
+var pubModel = require('../models/pub');
 module.exports = function (app) {
     var objectRepository = {
-        userModel: userModel
+        userModel: userModel,
+        ratingModel: ratingModel,
+        pubModel : pubModel
     };
-    /**
-     * Render a user's all ratings.
-     */
-    app.get('/rating/user/:id',
-        authMW(objectRepository),
-        checkUserIdentityMW(objectRepository),
-        loadUserRatingsMW(objectRepository),
-        renderMW(objectRepository, 'ruall')
-    );
-    /**
-     * Render a pub's with id,  all ratings.
-     */
-    app.get('/rating/pub/:id',
-        authMW(objectRepository),
-        loadPubRatingsMW(objectRepository),
-        renderMW(objectRepository, 'rpall')
-    );
     /**
     * Delete a rating with id.
     */

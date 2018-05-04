@@ -8,18 +8,17 @@ module.exports = function (objectrepository) {
     var UserModel = requireOption(objectrepository, 'userModel');
 
     return function (req, res, next) {
-        console.log(req.body);
         if ((typeof req.body === 'undefined') || (typeof req.body.user_name === 'undefined') ||
             (typeof req.body.user_mail === 'undefined') || (typeof req.body.user_pw === 'undefined')) {
-                console.log("Body param üres");
+            console.log("Body param üres");
             return next();
         }
-        if(req.user_pw != req.user_repw){
+        if (req.user_pw != req.user_repw) {
             res.tpl.error.push('Your passwords does not match');
             return next();
         }
 
-        //lets find the user
+        //lets find the users
         UserModel.findOne({
             email: req.body.user_mail
         }, function (err, result) {
@@ -35,6 +34,11 @@ module.exports = function (objectrepository) {
             newUser.email = req.body.user_mail;
             newUser.password = req.body.user_pw;
             newUser.phone = req.body.user_phone;
+
+            if (req.body.user_normal)
+                newUser.role = "normal";
+            else
+                newUser.role = "uploader";
             newUser.save(function (err) {
                 req.session.userid = newUser._id;
                 return res.redirect('/');

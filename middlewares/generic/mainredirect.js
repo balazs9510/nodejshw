@@ -7,12 +7,9 @@
 module.exports = function (objectrepository) {
 
   return function (req, res, next) {
-    console.log('Main redirect called');
     if (typeof req.session.userid === 'undefined') {
-      console.log('Redirect /');
       return res.redirect('/');
     } else {
-      console.log('Profil /');
       return res.redirect('/profil');
     }
   };

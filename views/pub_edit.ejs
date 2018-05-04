@@ -1,15 +1,15 @@
 <%- include('header'); %>
 <div class="container">
-    <form name="uploadPubForm" onsubmit="return validateForm()" action="/pub/add" method="POST">
+    <form name="uploadPubForm" onsubmit="return validateForm()" action="/pub/mod/<%- pub._id %>" method="POST">
         <div class="row">
             <div class="col-md-6">
-                <h1 style="padding-bottom: 5px;">Új kocsma felvétele</h1>
+                <h1 style="padding-bottom: 5px;">Szerkesztés</h1>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Név*:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="name" name="name" value="<%- pub.name %>">
                             </div>
                         </div>
                     </div>
@@ -17,7 +17,7 @@
                         <div class="form-group row">
                             <label for="adress" class="col-sm-2 col-form-label">Cím*:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="adress" name="adress">
+                                <input type="text" class="form-control" id="adress" name="adress" value="<%- pub.adress %>">
                             </div>
                         </div>
                     </div>
@@ -31,6 +31,7 @@
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="tel"
                                     name="phone"
+                                    value="<%- pub.phone %>"
                                     placeholder="+36 30 123 4568">
                             </div>
                         </div>
@@ -41,6 +42,7 @@
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="mail" 
                                     name="email"
+                                    value="<%- pub.email %>"
                                     placeholder="ex@gmail.com">
                             </div>
                         </div>
@@ -51,6 +53,7 @@
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="web"
                                     name="web"
+                                    value="<%- pub.web %>"
                                     placeholder="wwww.bestpub.com">
                             </div>
                         </div>
@@ -58,30 +61,10 @@
                 </div>
                 <hr>
             </div>
-            <div class="col-md-6" style="text-align: center">
-                <img id="pubImgSrc" src="http://via.placeholder.com/500x300" class="responsive" style="margin-top: 30px">
-                <a href="#" onclick="upload();">
-                    <label> Borítókép feltöltése</label>
-                </a>
-                <input type="file" id="pubImg" name="pub_coverimg" hidden>
-            </div>
-        </div>
-        <h3>Képek</h3>
-        <div class="row">
-            <div style="text-align: center; display: inline">
-                <img src="/images/bar.png" width="80">
-                <img src="/images/bar2.png" width="80">
-                <img src="/images/bar.png" width="80">
-                <img src="/images/bar2.png" width="80">
-                <a href="#">
-                    <img src="/images/plus.png" width="80">
-                    </a-href>
-            </div>
-
         </div>
         <div style="float:right; display: block">
             <button type="submit" class=" btn btn-success" style="padding-right: 10px">
-                Hozzáadás
+                Mentés
             </button>
             <a href="/profil">
                 <input type="button" class=" btn btn-danger" value="Mégse">
@@ -90,10 +73,6 @@
     </form>
 </div>
 <script>
-    function upload() {
-        var fileinput = document.getElementById('pubImg');
-        fileinput.click();
-    }
     function validateForm() {
         var pub_name = document.forms["uploadPubForm"]["pub_name"].value;
         var pub_adress = document.forms["uploadPubForm"]["pub_adress"].value;

@@ -12,14 +12,14 @@ module.exports = function (objectrepository) {
     }
     UserModel.findOne({ _id: req.session.userid }, function (err, result) {
       if (err) {
+        console.log("User betöltés hiba: " +err);
         return next(err);
       }
-      console.log(req.session.userid)
-      console.log(result);
+      console.log("Auth called, user: " + result);
+      res.tpl.userrole = req.session.userrole;
       res.tpl.user = result;
-
       return next();
-    });
+    }).populate('pubs')
+      .populate('ratings');
   };
-
 };

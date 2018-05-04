@@ -2,10 +2,10 @@ var loginMW = require('../middlewares/generic/login');
 var logoutMW = require('../middlewares/generic/logout');
 var mainredirectMW = require('../middlewares/generic/mainredirect');
 var renderMW = require('../middlewares/generic/render');
-var userMW = require('../middlewares/generic/user');
 var registerMW = require('../middlewares/generic/register');
 var userModel = require('../models/user');
 var authMW = require('../middlewares/generic/auth');
+var uploadImageMW = require('../middlewares/generic/imagehandler');
 module.exports = function (app) {
     var objectRepository = {
         userModel: userModel
@@ -37,16 +37,17 @@ module.exports = function (app) {
         registerMW(objectRepository),
         mainredirectMW(objectRepository)
     );
+    app.post('/uploadImage',
+        uploadImageMW(objectRepository)
+    );
     /**
     * Profil
     */
     app.get('/profil',
-        userMW(objectRepository),
+        authMW(objectRepository),
         renderMW(objectRepository, 'profil')
     );
     app.get('/',
         authMW(objectRepository),
         renderMW(objectRepository, 'index'));
-
-
 }

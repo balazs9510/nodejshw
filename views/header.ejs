@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <% if(typeof user === "undefined"){ %>
+    <% if(typeof userrole === "undefined"){ %>
         <nav class="navbar navbar-light bg-light justify-content-between">
             <div class="logowrapper">
                 <img src="/images/crown.png" class="logo">
@@ -41,17 +41,17 @@
                     <a class="navbar-brand" style=" font-size: 25px;" href="/">Kocsma kereső</a>
                 </div>
                 <ul class="navbar-nav list-inline">
-                    <%  if(user.role === "uploader"){ %>
-                        <li class="nav-item active list-inline-item">
+                    <%  if(userrole === "uploader"){ %>
+                        <li class="nav-item list-inline-item">
                             <a class="nav-link" href="/pub/add">Hely hozzáadás</a>
                         </li>
                     <%  } %>
-                    <%  if(user.role === "normal"){ %>
+                    <%  if(userrole === "normal"){ %>
                         <li class="nav-item list-inline-item">
                             <a class="nav-link" href="/pub">Keresés</a>
                         </li>
                     <%  } %>
-                    <li class="nav-item active list-inline-item">
+                    <li class="nav-item list-inline-item">
                         <a class="nav-link" href="/profil">Profil</a>
                     </li>
                     <li class="nav-item list-inline-item">

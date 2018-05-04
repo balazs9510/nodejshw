@@ -10,8 +10,8 @@
                         <div class="form-group row" style="margin-bottom: -15px;">
                             <label for="adress" class="col-sm-3 col-form-label">Cím: </label>
                             <div class="col-sm-9">
-                                <label class="form-control" id="adress"> 
-                                        <%= pub.adress %>
+                                <label class="form-control" id="adress">
+                                    <%= pub.adress %>
                                 </label>
                             </div>
                         </div>
@@ -25,11 +25,11 @@
                             <label for="tel" class="col-sm-3 col-form-label">Telefonszám:</label>
                             <div class="col-sm-9">
                                 <label class="form-control" id="tel">
-                                        <% if(pub.phone){ %>
-                                            <%= pub.phone %>
-                                        <% }else{ %>
-                                            -
-                                        <% }%>
+                                    <% if(pub.phone){ %>
+                                        <%= pub.phone %>
+                                            <% }else{ %>
+                                                -
+                                                <% }%>
                                 </label>
                             </div>
                         </div>
@@ -39,11 +39,11 @@
                             <label for="mail" class="col-sm-3 col-form-label">Email-cím:</label>
                             <div class="col-sm-9">
                                 <label class="form-control" id="mail">
-                                        <% if(pub.mail){ %>
-                                            <%= pub.mail %>
-                                        <% }else{ %>
-                                            -
-                                        <% }%>
+                                    <% if(pub.email){ %>
+                                        <%= pub.email %>
+                                            <% }else{ %>
+                                                -
+                                                <% }%>
                                 </label>
                             </div>
                         </div>
@@ -53,11 +53,11 @@
                             <label for="web" class="col-sm-3 col-form-label">Weboldal:</label>
                             <div class="col-sm-9">
                                 <label class="form-control" id="web">
-                                        <% if(pub.web){ %>
-                                            <%= pub.web %>
-                                        <% }else{ %>
-                                            -
-                                        <% }%>
+                                    <% if(pub.web){ %>
+                                        <%= pub.web %>
+                                            <% }else{ %>
+                                                -
+                                                <% }%>
                                 </label>
                             </div>
                         </div>
@@ -83,20 +83,30 @@
             </div>
             <div class="col-md-6 col-md-border">
                 <h1>Értékelések</h1>
-                <textarea rows="20" readonly style="resize: none; width: 100%">mauris ac elit augue. Class aptent taciti soc
-                   iosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                    Cras at sapien et eros consectetur laoreet iaculis sed velit. Curabitur luctus malesuada velit, 
-                    vulputate bibendum ante posuere et. Mauris euismod aliquam diam, quis vulputate turpis tincidunt non.
-                     Phasellus condimentum varius commodo. Nunc condimentum, ex ut sodales luctus, tortor leo egestas sem, sed venenatis nulla ex sit amet velit.
-                      Nunc a gravida lacus. Proin fringilla sollicitudin auctor. Ut vel ultrices magna, id varius odio. In hac habitasse platea dictumst. In ut magna sem.
-                       Donec augue nisl, ultrices sit amet arcu eu, consectetur posuere purus. Praesent neque magna, pharetra eu pulvinar sed, sodales ut urna. 
-                       Praesent non massa suscipit, iaculis magna id, viverra leo.
-                </textarea>
+                <table style="table-layout: fixed;">
+                    <thead>
+                        <tr>
+                            <th style="word-wrap:break-word; width:200px;">Értékelés</th>
+                            <th>Pontszám</th>
+                        </tr>
+                    </thead>
+                    <% for (var i = 0; i < pub._ratings.length;i++){ var rating = pub._ratings[i];  %>
+                        <tr>
+                            <td style="word-wrap:break-word; width:200px; max-width: 300px;"><%= rating.text %></td>
+                            <td><%= rating.value %></td>
+                        </tr>
+                    <% } %>
+                </table>
                 <hr>
                 <h4>Új értékelés küldése</h4>
-                <form>
-                    <textarea rows="3" placeholder="Nagyon jó hely. 10/10" style="resize: none; width: 100%"></textarea>
-                    <input type="button" class="btn btn-succes" value="Küldés" style="float: right">
+                <form method="POST" action="/rating/add/pub/<%= pub._id %>">
+                    <label for="rating_text">Értékelés: </label>
+                    <textarea rows="3" placeholder="Nagyon jó hely. 10/10" style="resize: none; width: 100%" name="rating_text"></textarea>
+
+                    <label for="rating_value">Pontszám: </label>
+                    <input type="number" value="0" min="0" max="5" step="1" name="rating_value">
+
+                    <button type="submit" class="btn btn-succes"  style="float: right">Küldés </button>
                 </form>
             </div>
         </div>

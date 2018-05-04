@@ -7,10 +7,13 @@ var requireOption = require('../common').requireOption;
  */
 module.exports = function (objectRepository) {
 
-    //var pubModel = requireOption(objectRepository, 'pubModel');
+    var pubModel = requireOption(objectRepository, 'pubModel');
 
     return function (req, res, next) {
-
+        if ((typeof req.body.name === 'undefined') || (typeof req.body.adress === 'undefined')) {
+            res.tpl.error.push('Invalid model');
+            res.end();
+        }
         return next();
     };
 };

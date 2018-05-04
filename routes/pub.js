@@ -1,7 +1,5 @@
 var authMW = require('../middlewares/generic/auth');
 var renderMW = require('../middlewares/generic/render');
-var checkUserIdentityMW = require('../middlewares/generic/checkUserIdentity');
-
 var checkPubMW = require('../middlewares/pub/checkPub');
 var savePubMW = require('../middlewares/pub/savePub');
 var loadPubMW = require('../middlewares/pub/loadPub');
@@ -9,42 +7,11 @@ var deletePubMW = require('../middlewares/pub/deletePub');
 var loadAllPubMW = require('../middlewares/pub/loadAllPub');
 
 var userModel = require('../models/user');
+var pubModel = require('../models/pub');
 module.exports = function (app) {
     var objectRepository = {
-        pubs: [
-            {
-                id: 1,
-                name: "Csuda kocsma",
-                adress: "Pest",
-                web: "kocsma.hu"
-
-            },
-            {
-                id: 2,
-                name: "HaleLuja",
-                adress: "Pécs",
-                web: "kocsma.hu"
-            },
-            {
-                id: 3,
-                name: "Csuda kocsma",
-                adress: "Pest",
-                web: "kocsma.hu"
-            },
-            {
-                id: 4,
-                name: "Csuda kocsma",
-                adress: "Pest",
-                web: "kocsma.hu"
-            },
-            {
-                id: 5,
-                name: "REst kocsma",
-                adress: "Pest x utca",
-                web: "rkocsma.hu"
-            },
-        ],
-        userModel: userModel
+        userModel: userModel,
+        pubModel : pubModel
     };
     /**
      * Render new pub view.
@@ -72,9 +39,8 @@ module.exports = function (app) {
     /**
      * Delete a pub with id.
      */
-    app.post('/pub/del/:id',
+    app.get('/pub/del/:id',
         authMW(objectRepository),
-        checkUserIdentityMW(objectRepository),
         loadPubMW(objectRepository),
         deletePubMW(objectRepository)
     );
@@ -83,16 +49,14 @@ module.exports = function (app) {
      */
     app.get('/pub/mod/:id',
         authMW(objectRepository),
-        checkUserIdentityMW(objectRepository),
         loadPubMW(objectRepository),
-        renderMW(objectRepository, 'pmodd')
+        renderMW(objectRepository, 'pub_edit')
     );
     /** 
      * Modify a pub with id.
      *  */
     app.post('/pub/mod/:id',
         authMW(objectRepository),
-        checkUserIdentityMW(objectRepository),
         loadPubMW(objectRepository),
         checkPubMW(objectRepository),
         savePubMW(objectRepository),
@@ -100,7 +64,7 @@ module.exports = function (app) {
     /**
      * Get all pub.
      */
-    app.get('/pub',
+    app.use('/pub',
         authMW(objectRepository),
         loadAllPubMW(objectRepository),
         renderMW(objectRepository, 'pub_search')

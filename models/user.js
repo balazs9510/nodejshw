@@ -6,10 +6,16 @@ var User = db.model('User', {
     email: String,
     password: String,
     phone: String,
-    profilImg: {
-        data: Buffer, 
-        contentType: String
-    }
+    role : String,
+    profilImgPath: String,
+    pubs : [{
+        type: Schema.Types.ObjectId,
+        ref: 'Pub'
+    }],
+    _ratings :  [{
+        type: Schema.Types.ObjectId,
+        ref: 'Rating'
+    }]
 });
 
 module.exports = User;
